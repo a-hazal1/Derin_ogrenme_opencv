@@ -1,0 +1,55 @@
+Evrişimsel sinir ağları(CNN),görüntü üzerinde sınııflandırma,nesne tespiti ve takibi programlarını çözmek için özelleşmiş ağlardır.
+
+cnn kısımları:
+Evrişimden tam bağlanmaya kadar olan kısım öznitelik çıkarılan kısımdır
+Tam bağlantı kısmı ise öznitelikleri kullanarak çıktı elde ederek sınıflandırma yaptığımız kısımdır
+
+--------------------------------------------
+evrişim katmanı:
+
+Evrişim Operasyonu Nedir?
+- Özellik algılayıcı, kenarlar veya dışbükey şekiller gibi özellikleri algılar. Örneğin, görüntümüz bir köpek ise, özellik afgılayıcı köpeğin kulağı veya kuyruğu gibi özellikleri algılayabilir.
+- özellik haritası = evrişim. Matrislerin elemanlarının çarpımı.
+- Görüntü üzerinde gezinme gerçekleşir.
+- Bu işlemler sonucunda orjinal görüntünün boyutu azalmış oluyor, bu modelimizin hızlı çalışması açısından önemli.
+- Birden çok özellik haritası oluşturuyoruz, çünkü birden çok özellik algılayıcı (filtre) kullanıyoruz.mesela bir kuyruk tespit etmek istiyorsak onu tespit eden flitre.bu flitreler cnn de network tarafindan öğrenilen şeylerdir.7 ye 7 lik bir resim 3 e 3 lük bir evrişim(kernel)flitresi ile dolaşılırken(çarpılıyor her piksel sonra toplanır ve kernele yazılır) 5 e 5 liğe dönüşüyor.
+
+Aktivasyon Fonksiyonu 
+Evrişim katmanından sonra aktivasyon fonksiyonu olarak ReLU kullanıyoruz. Bu aktivasyonu fonksiyonu doğrusallığı kırarak, modelimizin doğrusal olmayan yapıları öğrenmesine olanak sağlıyor. modelin doğrusal olmamasını artırıyor
+----------------------------------------------
+piksel ekleme katmanı
+
+Piksel Ekleme
+- Evrişim katmanlarını uygulamaya devam ettikçe, resmin boyutu istediğimizden daha hızlı azalacaktır. Ağımızın ilk katmanlarında, bu düşük seviyeli özellikleri çıkarabilmemiz için orijinal giriş boyutu hakkında olabildiğince fazla bilgiyi korumak istiyoruz. Bu nedenle piksel eklemesi yapıyoruz.
+- Girdi ve çıktı boyutu aynı. Adımlama = 1, pikseller arasında 1'er
+1'er dolaş demek.
+
+-----------------------------------------------
+
+Ortaklama
+- Aşağı örnekleme veya alt örnekleme yapar (Parametre sayısını azaltır)
+- Ölçek veya yön değişikliklerine göre değişmeyen özelliklerin - algılanmasını sağlar.
+- Ağdaki parametre ve hesaplama miktarını azaltır ve dolayısıyla ezberlemeyi(over-fitting) da kontrol eder.
+-ortalama alınabilir medyan alınabilir
+piksel eklemede bilgi kaybetmiyoruz ama veriyi de ezberlemek istemiyoruz
+
+-----------------------------------------------
+düzleştirme katmanı
+
+Düzleştirme:
+- İki boyutlu bir veriyi vektör haline getirir
+
+-----------------------------------------------
+tam bağlantı katmanı
+
+Tam bağlantı
+- Bir katmandaki nöronların öncekş katmandaki tüm aktivasyonlarla bağlantıları vardır.Örneğin yapay sinir ağları
+-Sınıflandırma işlemi gerçekleştirilir
+
+Seyreltme
+- Rastgele seçilen nöronların eğitim sırasında edildiği bir tekniktir.(ezberlemeyi -over-fitting- önler)
+
+Veri Artırma
+- Ezberleme sorununu önlemek için, el yazısı rakam veri setimizi yapay olarak genişletmemiz gerekiyor.
+- Rakam varyasyonlarını yeniden oluşturmak için eğitim verilerini küçük dönüşümlerle değiştirebiliriz.
+- Örneğin sayı ortalanmamıştır, ölçek aynı değildir (bazıları büyük - küçük sayılarla yazanlar) veya görüntü döndürülür.
